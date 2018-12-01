@@ -1,57 +1,132 @@
-'use strict';
+/**
+ * Copyright (c) 2017-present, Viro, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
 
 import React, { Component } from 'react';
-
-import {StyleSheet} from 'react-native';
+import {
+  AppRegistry,
+  Text,
+  View,
+  StyleSheet,
+  PixelRatio,
+  TouchableHighlight,
+} from 'react-native';
 
 import {
-  ViroARScene,
-  ViroText,
-  ViroConstants,
+  ViroVRSceneNavigator,
+  ViroARSceneNavigator
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
+/*
+ TODO: Insert your API key below
+ */
+var sharedProps = {
+  apiKey:"8842DAD6-7BC6-4014-818D-7DFF274E2307",
+}
 
+// Sets the default scene you want for AR and VR
+var InitialARScene = require('./js/HelloWorldSceneAR');
+var InitialVRScene = require('./js/HelloWorldScene');
+
+var UNSET = "UNSET";
+var VR_NAVIGATOR_TYPE = "VR";
+var AR_NAVIGATOR_TYPE = "AR";
+
+// This determines which type of experience to launch in, or UNSET, if the user should
+// be presented with a choice of AR or VR. By default, we offer the user a choice.
+var defaultNavigatorType = UNSET;
+
+export default class ViroSample extends Component {
   constructor() {
     super();
 
-    // Set initial state here
     this.state = {
-      text : "Initializing AR..."
-    };
-
-    // bind 'this' to functions
-    this._onInitialized = this._onInitialized.bind(this);
+      navigatorType : defaultNavigatorType,
+      sharedProps : sharedProps
+    }
+    this._getVRNavigator = this._getVRNavigator.bind(this);
   }
 
+  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
+  // if you are building a specific type of experience.
   render() {
-    console.log("rendering")
+      return this._getVRNavigator();
+  }
+
+  // Presents the user with a choice of an AR or VR experience
+
+  // Returns the ViroARSceneNavigator which will start the AR experience
+
+  // Returns the ViroSceneNavigator which will start the VR experience
+  _getVRNavigator() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
-      </ViroARScene>
+      <ViroVRSceneNavigator {...this.state.sharedProps}
+        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}/>
     );
   }
 
-  _onInitialized(state, reason) {
-    if (state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        text : "Hello World!"
-      });
-    } else if (state == ViroConstants.TRACKING_NONE) {
-      // Handle loss of tracking
-    }
-  }
+  // This function returns an anonymous/lambda function to be used
+  // by the experience selector buttons
 }
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
+var localStyles = StyleSheet.create({
+  viroContainer :{
+    flex : 1,
+    backgroundColor: "black",
   },
+  outer : {
+    flex : 1,
+    flexDirection: 'row',
+    alignItems:'center',
+    backgroundColor: "black",
+  },
+  inner: {
+    flex : 1,
+    flexDirection: 'column',
+    alignItems:'center',
+    backgroundColor: "black",
+  },
+  titleText: {
+    paddingTop: 30,
+    paddingBottom: 20,
+    color:'#fff',
+    textAlign:'center',
+    fontSize : 25
+  },
+  buttonText: {
+    color:'#fff',
+    textAlign:'center',
+    fontSize : 20
+  },
+  buttons : {
+    height: 80,
+    width: 150,
+    paddingTop:20,
+    paddingBottom:20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor:'#68a0cf',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+  exitButton : {
+    height: 50,
+    width: 100,
+    paddingTop:10,
+    paddingBottom:10,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor:'#68a0cf',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff',
+  }
 });
 
-module.exports = HelloWorldSceneAR;
+module.exports = ViroSample

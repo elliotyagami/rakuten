@@ -5,13 +5,15 @@ import Map from './Map'
 import Video from './agoravideo'
 import List from './list'
 import AR from './AR'
+import wiki from './wikitude'
 
 const routeConfig = {
   Find: { screen: List },
   Maps: { screen: Map },
   // AR: { screen: Video },
+  // AR: { screen:  wiki},
   AR: { screen: AR },
-  VideoChat: { screen: Video },
+  Video: { screen: Video },
   Chat: { screen: ChatScreen }
 }
 export default StackNavigator(routeConfig)

@@ -31,15 +31,15 @@ export default class RepoList extends Component {
         const repos = [
             {
                 title: 'Hotel',
-                avatar: 'http://206.189.179.184:8000/hotel.jpg'
+                avatar: 'http://206.189.179.184:8000/img/hotel.jpg'
             },
             {
                 title: 'Restaurants',
-                avatar: 'http://206.189.179.184:8000/restaurant.jpg'
+                avatar: 'http://206.189.179.184:8000/img/restaurant.jpg'
             },
             {
                 title: 'Shopping mall',
-                avatar: 'http://206.189.179.184:8000/shopping.jpg'
+                avatar: 'http://206.189.179.184:8000/img/shopping.jpg'
             }
         ]
         return (

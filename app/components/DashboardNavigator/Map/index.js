@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import MapView, {Marker, Callout, } from 'react-native-maps';
+import MapView, { Marker, Callout, } from 'react-native-maps';
 import translations from '../../../i18n'
 
 export default class MyMap extends React.Component {
@@ -28,22 +28,31 @@ export default class MyMap extends React.Component {
                         latitude: 20.9948891,
                         longitude: 105.799677,
                     },
-                    title: "hotel 1",
-                    description: "best hotel"
                 },
                 {
                     latlng: {
                         latitude: 20.9848891,
                         longitude: 105.799677,
                     },
-                    title: "hotel 1",
-                    description: "best hotel"
+
                 }
             ]
         })
     }
 
     render() {
+        let title = this.props.navigation.state.params.name;
+        let details = [{
+            title: "Suncity",
+            description: "Agarwal builders"
+        },
+        {
+            title: "JP House",
+            description: "JP Builders"
+        }]
+        if ("ShoppingMall" == title) {
+            details = [{ title: 'reliance store' }, { 'title': 'shoe store', description: 'Sandals, shoes, sneakers available for men and women' }]
+        }
         return (
             <View style={styles.container}>
                 <MapView style={styles.map} initialRegion={this.state.region}>
@@ -51,13 +60,13 @@ export default class MyMap extends React.Component {
                         <Marker
                             key={i}
                             coordinate={marker.latlng}
-                            title={marker.title}
-                            description={marker.description}
-                            >
+                            title={detaisl[i].title}
+                            description={details[i].description}
+                        >
                             <Callout tooltip={true}
-                                            onPress={() => {
-                                                this.props.navigation.navigate('AR', { channelId: "sample" })
-                                            }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('AR', { channelId: title })
+                                }}
                             />
                         </Marker>
                     ))}
