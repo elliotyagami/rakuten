@@ -56,7 +56,7 @@ export default class MyMap extends React.Component {
                             >
                             <Callout tooltip={true}
                                             onPress={() => {
-                                                this.props.navigation.navigate('VideoChat', { channelId: "sample" })
+                                                this.props.navigation.navigate('AR', { channelId: "sample" })
                                             }}
                             />
                         </Marker>

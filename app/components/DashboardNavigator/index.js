@@ -9,6 +9,7 @@ import AR from './AR'
 const routeConfig = {
   Find: { screen: List },
   Maps: { screen: Map },
+  // AR: { screen: Video },
   AR: { screen: AR },
   VideoChat: { screen: Video },
   Chat: { screen: ChatScreen }

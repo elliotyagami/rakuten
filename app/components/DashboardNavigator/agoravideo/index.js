@@ -39,7 +39,7 @@ export default class RNAgoraExample extends Component {
     }
 
     static navigationOptions = {
-        title: 'VideoChat',
+        title: 'VideoChat'
     }
     componentWillMount() {
         //初始化Agora

@@ -30,8 +30,8 @@ android {
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.chat"
-        minSdkVersion 23
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 23
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -84,6 +84,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-agora')
     implementation project(':react-native-maps')
     implementation project(':react-native-i18n')
@@ -93,7 +94,6 @@ dependencies {
     implementation project(path: ':react_viro')
     implementation project(path: ':viro_renderer')
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // implementation "com.android.support:appcompat-v7:23.0.1"
     implementation 'com.android.support:appcompat-v7:25.0.0'
