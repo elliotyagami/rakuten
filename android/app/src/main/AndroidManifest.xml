@@ -3,12 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     // Or insert this line if you don't need FINE location
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
@@ -22,7 +22,7 @@
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -31,6 +31,7 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <meta-data android:name="com.google.ar.core" android:value="optional" />
     </application>
 
 </manifest>
